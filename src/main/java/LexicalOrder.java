@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,10 +14,21 @@ import java.util.List;
  * 输出：[1,2]<br/>
  * 提示：
  * 1 <= n <= 5 * 104
- * @author Administrator
+ * @author <a href="https://leetcode-cn.com/problems/lexicographical-numbers/solution/by-ac_oier-ktn7/">宫水三叶</a>
  */
 public class LexicalOrder {
+    List<Integer> ans = new ArrayList<>();
     public List<Integer> lexicalOrder(int n) {
-        return null;
+        for (int i = 1; i <= 9; i++) {
+            dfs(i, n);
+        }
+        return ans;
+    }
+    void dfs(int current, int limit) {
+        if (current > limit) {return ;}
+        ans.add(current);
+        for (int i = 0; i <= 9; i++) {
+            dfs(current * 10 + i, limit);
+        }
     }
 }
